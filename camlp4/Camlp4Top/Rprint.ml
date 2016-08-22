@@ -223,9 +223,9 @@ and print_out_constr ppf (name, tyl, ret) =
   | (_,None) ->
       fprintf ppf "@[<2>%s of@ %a@]" name
         (print_typlist print_out_type " and") tyl ]
-and print_out_label ppf (name, mut, arg) =
-  fprintf ppf "@[<2>%s :@ %s%a@]" name (if mut then "mutable " else "")
-    print_out_type arg
+and print_out_label ppf (name, mut, unboxed, arg) =
+  fprintf ppf "@[<2>%s :@ %s%a%s@]" name (if mut then "mutable " else "")
+    print_out_type arg (if unboxed then " [@unboxed]" else "")
 and print_out_extension_constructor ppf ext =
   let print_extended_type ppf =
     let print_type_parameter ppf ty =
